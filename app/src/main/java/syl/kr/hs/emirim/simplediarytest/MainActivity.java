@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
             fileName=year+"_"+(month+1)+"_"+day+".txt";
-            String readData=
+            String readData= readDiary(fileName);
+                edit.setText(readData);
+                but.setEnabled(true);
+
 
             }
         });
