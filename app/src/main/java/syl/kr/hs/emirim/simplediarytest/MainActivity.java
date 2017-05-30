@@ -33,13 +33,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
             fileName=year+"_"+(month+1)+"_"+day+".txt";
-
+            String readData=
 
             }
         });
 
 
 
+    }
+    public String readDiary(){
+    return null;
     }
 }
 
@@ -60,6 +63,6 @@ public class MainActivity extends AppCompatActivity {
 -[] calender 클래스로 현재날짜 구한다.
 -[] DatePicker에 현재날짜를 설정한다.
 -[] 날짜가 변경되었을 때 처리하는 Handler 작성한다.
-ㄴ
+
 
 */
