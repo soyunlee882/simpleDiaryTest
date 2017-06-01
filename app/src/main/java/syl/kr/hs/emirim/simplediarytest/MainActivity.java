@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,36 +39,36 @@ public class MainActivity extends AppCompatActivity {
             String readData= readDiary(fileName);
                 edit.setText(readData);
                 but.setEnabled(true);
-
-
+                
             }
         });
 
 
 
     }
-    public String readDiary(){
-    return null;
+    public String readDiary(String fileName){
+    String diaryStr=null;
+        FileInputStream fIn=null;
+        try {
+           fIn = openFileInput(fileName);
+           byte[] buf=new byte[500];
+            fIn.read(buf);
+            diaryStr=new String(buf).trim();
+           //trim() :: 앞뒤 공백 넣어 주기;
+            but.setText("수정 하기");
+        }catch(FileNotFoundException e){
+         //   e.printStackTrace();
+            edit.setText("일기가 존재하지 않습니다.");
+            but.setText("새로 저장");
+        } catch (IOException e) {
+            //e.printStackTrace();
+
+
+        }
+        return diaryStr;
     }
 }
 
 
 
 
-/*
---#1MainActivity의 레이아웃 수정
-
--[]activity_main.xml수정   git "#1 updateinit
-
---#2View 객체의 참조값
-
--[]MainActivity 설정된 레이아웃에 사용된 View 객체의 참조값을 참조변수에 대  git "#2Assign View Reference
-
---#3현재날자를 DatePicker 설정과 날짜 변경 핸틀러
-
--[] calender 클래스로 현재날짜 구한다.
--[] DatePicker에 현재날짜를 설정한다.
--[] 날짜가 변경되었을 때 처리하는 Handler 작성한다.
-
-
-*/
